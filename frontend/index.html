@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vero Market Intelligence Demo</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <header class="page-header card">
+        <h1>Vero Market Intelligence</h1>
+        <p>Country risk scoring and comparison demo.</p>
+      </header>
+
+      <section class="card">
+        <h2>Add Country</h2>
+        <form id="country-form" class="grid-form">
+          <label>Name<input name="name" type="text" required /></label>
+          <label>Geological Stability (0-10)<input name="geological_score" type="number" min="0" max="10" step="0.1" required /></label>
+          <label>Political Stability (0-10)<input name="political_score" type="number" min="0" max="10" step="0.1" required /></label>
+          <label>Legal Environment (0-10)<input name="legal_score" type="number" min="0" max="10" step="0.1" required /></label>
+          <label>Economic Attractiveness (0-10)<input name="economic_score" type="number" min="0" max="10" step="0.1" required /></label>
+          <label>Market Access (0-10)<input name="market_access_score" type="number" min="0" max="10" step="0.1" required /></label>
+          <label>Security (0-10)<input name="security_score" type="number" min="0" max="10" step="0.1" required /></label>
+          <button type="submit" class="btn primary">Add Country</button>
+        </form>
+        <p id="form-error" class="error"></p>
+      </section>
+
+      <section class="card">
+        <h2>Country Explorer</h2>
+        <div class="row">
+          <select id="explorer-select"></select>
+          <button id="view-details" class="btn">View Details</button>
+        </div>
+        <div id="country-details" class="detail-card muted">Select a country to view details.</div>
+      </section>
+
+      <section class="card">
+        <h2>Compare Countries</h2>
+        <div class="row">
+          <select id="country-a"></select>
+          <select id="country-b"></select>
+          <button id="compare-btn" class="btn">Compare</button>
+        </div>
+        <p id="compare-message" class="muted"></p>
+        <div id="comparison" class="comparison-grid"></div>
+        <canvas id="comparison-chart" height="120"></canvas>
+      </section>
+
+      <section class="card">
+        <h2>Rank Countries</h2>
+        <button id="rank-btn" class="btn primary">Run Ranking</button>
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Country</th>
+              <th>Total Score</th>
+            </tr>
+          </thead>
+          <tbody id="ranking-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="/frontend/app.js"></script>
+  </body>
+</html>

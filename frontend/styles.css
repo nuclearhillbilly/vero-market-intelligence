@@ -1,0 +1,114 @@
+:root {
+  --bg: #f4f6fa;
+  --card: #ffffff;
+  --text: #14213d;
+  --muted: #6c7a92;
+  --accent: #1d4ed8;
+  --border: #d8deea;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+.page-header h1 { margin: 0; }
+.page-header p { margin: 0.4rem 0 0; color: var(--muted); }
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+input, select {
+  padding: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.btn {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.btn.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.error { color: #b00020; min-height: 1.1rem; }
+.muted { color: var(--muted); }
+
+.detail-card {
+  margin-top: 0.75rem;
+  padding: 0.8rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+}
+
+.comparison-grid {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.6rem;
+}
+.metrics-table td {
+  border-top: 1px solid var(--border);
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+table {
+  margin-top: 0.8rem;
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  text-align: left;
+  border-top: 1px solid var(--border);
+  padding: 0.55rem 0.4rem;
+}
