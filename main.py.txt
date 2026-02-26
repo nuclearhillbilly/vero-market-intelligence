@@ -1,0 +1,75 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List
+
+app = FastAPI()
+
+# ----------------------------
+# Data Model
+# ----------------------------
+
+class Country(BaseModel):
+    name: str
+    geological_score: float
+    political_score: float
+    legal_score: float
+    economic_score: float
+    market_access_score: float
+    security_score: float
+
+# ----------------------------
+# In-Memory Storage
+# ----------------------------
+
+countries: List[Country] = []
+
+# ----------------------------
+# Scoring Function
+# ----------------------------
+
+def calculate_score(country: Country, weights: dict):
+    return (
+        country.geological_score * weights["geological"] +
+        country.political_score * weights["political"] +
+        country.legal_score * weights["legal"] +
+        country.economic_score * weights["economic"] +
+        country.market_access_score * weights["market_access"] +
+        country.security_score * weights["security"]
+    )
+
+# ----------------------------
+# API Endpoints
+# ----------------------------
+
+@app.post("/countries")
+def add_country(country: Country):
+    countries.append(country)
+    return {"message": "Country added successfully"}
+
+@app.get("/countries")
+def get_countries():
+    return countries
+
+@app.post("/score")
+def score_countries():
+    weights = {
+        "geological": 0.25,
+        "political": 0.20,
+        "legal": 0.15,
+        "economic": 0.15,
+        "market_access": 0.15,
+        "security": 0.10,
+    }
+
+    scored = []
+
+    for country in countries:
+        total_score = calculate_score(country, weights)
+        scored.append({
+            "name": country.name,
+            "score": total_score
+        })
+
+    scored.sort(key=lambda x: x["score"], reverse=True)
+
+    return scored
